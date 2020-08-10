@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- Vue library development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    
+    <!-- Connecting our app.js file, defer tag needed so that our JS only runs after the webpage is loaded -->
+    <script src="app.js" defer></script> 
+
+</head>
+<body>
+
+    <!--Creating an "instance" of Vue -->
+    <!--Once attached to a vue instance in app.js, it has access to all the data in that vue instance -->
+    <!--This is referred to as data binding -->
+    <div id="app">  
+        {{hello}}
+            <!--This is essentially a for loop inside of html. instead of making a loop in js with jquery and 
+                appending numbers one at a time, this makes the li elements for us -->
+            <ul>
+                <li v-for="num of nums">{{num}}</li>
+            </ul>
+
+
+        <input type="number" v-model="newNum"> <!--v-model: Attaches an input form to the data-->
+        <!--This allows for two way data binding; if you change the input it changes newNum, if you change newNum it changes the input. V-model only associate with forms -->
+        <button v-on:click='addNum'>Add Number</button>
+
+        <h1 v-if="even"><!--v-if: This vairable will only show up if the variable attached to it is true-->
+            There are an even number of elements in the array!
+        </h1>
+
+        <h1> Posts </h1>
+        <button v-on:click="getPosts">Get Posts</button>
+
+        <div v-for="post of posts">
+            <h1>{{post.title}}</h1>
+            <p>{{post.body}}</p>
+        </div>
+
+    </div>
+    
+</body>
+</html>
