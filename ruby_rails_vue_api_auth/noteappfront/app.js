@@ -111,6 +111,22 @@ const app = new Vue({
                 this.newNote=""
                 this.getNotes()
             })
+        },
+
+        //////////// DELETE - DELETE A NOTE /////////////
+        deleteNote: function(event) {
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            const id = event.target.id
+
+            fetch(`${URL}/notes/${id}`, {
+                method: "delete",
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                },
+            })
+                .then(response => {
+                    this.getNotes()
+                })
 
         }
     }
