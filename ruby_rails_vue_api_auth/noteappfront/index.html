@@ -27,9 +27,17 @@
         <div id="loginform">
             <form v-on:submit.prevent="handleLogin">
                 <fieldset><legend>LOGIN</legend>
-                <input type="text" placeholder="username" v-model="createUN">
-                <input type="password" placeholder="password" v-model="createPW">
+                <input type="text" placeholder="username" v-model="loginUN">
+                <input type="password" placeholder="password" v-model="loginPW">
                 <button v-on:click="handleLogin">Login</button>
+                </fieldset>
+            </form>
+
+            <form v-on:submit.prevent="handleSignup">
+                <fieldset><legend>CREATE USER</legend>
+                    <input type="text" placeholder="username" v-model="createUN">
+                    <input type="password" placeholder="password" v-model="createPW">
+                    <button v-on:click="handleSignup">Create Account</button>
                 </fieldset>
             </form>
         </div>
@@ -38,8 +46,20 @@
     <!--This is the div that will be shown when the user is logged-->
     <div id="login" v-if="loggedin">
         <h1>This is the user area</h1>
+
+        <!--This is the div that will show the notes-->
+        <h1>New Note</h1>
+        <input type="text" v-model="newNote">
+        <button v-on:click.prevent="createNote">Create Note</button>
+        <div class="note" v-for="note of notes">
+            <h1>{{note.message}}</h1>
+            <button>Delete</button><button>Update</button>
+        </div>
+
         <button v-on:click="handleLogout">Log out</button>
     </div>
+
+
 
 </div>
 
