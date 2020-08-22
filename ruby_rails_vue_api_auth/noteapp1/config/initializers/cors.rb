@@ -1,5 +1,5 @@
 # CORS is cross origin resource sharing - security measure that is built into browsers
-# We need to specify which URLS can make requests to your serverrs
+# We need to specify which URLS can make requests to your servers
 
 # Be sure to restart your server when you modify this file.
 
