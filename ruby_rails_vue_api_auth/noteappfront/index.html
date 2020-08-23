@@ -51,11 +51,22 @@
         <h1>New Note</h1>
         <input type="text" v-model="newNote">
         <button v-on:click.prevent="createNote">Create Note</button>
+
+
+        <!--Form that populates with the old note to update it-->
+        <h1>Update Note</h1>
+        <input type="text" v-model="updateNote">
+        <button v-on:click.prevent="editNote" v-bind:id="editID">Update Note</button>
+
+
+        <!--Lists all the notes for that user-->
         <div class="note" v-for="note of notes">
             <h1>{{note.message}}</h1>
-            <button v-bind:id='note.id' v-on:click="deleteNote">Delete</button><button v-bind:id='note.id'>Update</button>
+            <button v-bind:id='note.id' v-on:click="deleteNote">Delete</button><button v-bind:id='note.id' v-on:click="editSelect">Update</button>
         </div>
 
+
+        <!--Logout button-->
         <button v-on:click="handleLogout">Log out</button>
     </div>
 

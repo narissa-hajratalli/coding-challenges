@@ -11,7 +11,10 @@ const app = new Vue({
         prodURL: null,
         user: null,
         token: null,
-        notes: []
+        notes: [],
+        newNote: "",
+        updateNote: "",
+        editID: 0
     },
     methods: {
         //////////// LOGIN /////////////
@@ -127,7 +130,41 @@ const app = new Vue({
                 .then(response => {
                     this.getNotes()
                 })
+        },
 
+        //////////// UPDATE - Update a note /////////////
+        editNote: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            const id = event.target.id
+            const updated = {
+                message: this.updateNote
+            }
+            fetch(`${URL}/notes/${id}`, {
+                method: "put",
+                headers: {
+                    Authorization: `bearer ${this.token}`,
+                    "Content-type": "application/json"
+                },
+                body:JSON.stringify(updated)
+            })
+                .then(response => {
+                    this.getNotes()
+                })
+        },
+
+        editSelect: function(event){
+            this.editID = event.target.id
+            console.log(this.editID, event.target.id)
+            //taking the id of the update form and making sure it matches the id of the individual update button which should be the id of the individual note
+
+            const theNote = this.notes.find((note) => {
+                return note.id == this.editID
+            })
+            //Sets the form field equal to the note in the array that has an id that matches the id
+            //Grabbing the note from our list of notes using the id
+
+            this.updateNote = theNote.message
+            //the forms should reflect the message of that note
         }
     }
 })
