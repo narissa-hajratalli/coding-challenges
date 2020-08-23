@@ -7,6 +7,9 @@
     <!-- VUE SCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
+    <!-- Milligram -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" />
+
     <!-- Bootstrap -->
 <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
 
@@ -20,10 +23,10 @@
 
 <!-- This is the div that contains the information when you login-->
 <div id="app">
+    <h1 id="title">narz<span>Nts</span></h1>
 
     <!--This is the div that makes it visible for people to login and/or create an account-->
     <div id="nologin" v-if="!loggedin">
-        <h1>This is the login area</h1>
         <div id="loginform">
             <form v-on:submit.prevent="handleLogin">
                 <fieldset><legend>LOGIN</legend>

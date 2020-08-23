@@ -1,0 +1,15 @@
+#title {
+    text-align: center;
+    margin: 50px auto;
+}
+
+#title span {
+    color: cornflowerblue;
+    text-decoration: underline;
+}
+
+#loginform {
+    display: flex;
+    width: 60%;
+    margin: 10px auto;
+}
