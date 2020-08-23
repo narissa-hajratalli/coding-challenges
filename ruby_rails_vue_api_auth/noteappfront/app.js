@@ -44,6 +44,10 @@ const app = new Vue({
                         this.getNotes()
                         this.loginPW = ""
                         this.loginUN = ""
+                        window.sessionStorage.setItem('login', JSON.stringify(data))
+                        //storing the data response in session storage
+                        //setItem means you're gonna put something in session storage
+                        //login is the key, the string version of the data containing the user and the token
                     }
                 })
         },
@@ -54,6 +58,7 @@ const app = new Vue({
             this.token = null
             this.loggedin = false
             this.notes = ''
+            window.sessionStorage.removeItem('login')
         },
 
         //////////// CREATE USER /////////////
@@ -165,6 +170,19 @@ const app = new Vue({
 
             this.updateNote = theNote.message
             //the forms should reflect the message of that note
+        },
+    },
+
+    //LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions
+    created: function(){
+        const getLogin = JSON.parse(window.sessionStorage.getItem('login'))
+        // console.log(getLogin)
+
+        if(getLogin){
+            this.user = getLogin.user
+            this.token = getLogin.token
+            this.loggedin = true
+            this.getNotes()
         }
     }
 })
