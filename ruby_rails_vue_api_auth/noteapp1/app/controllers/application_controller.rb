@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
 
 
   def encode_token(payload) #encodes your username
-    JWT.encode(payload, 'yourSecret')
+    JWT.encode(payload,  ENV['SECRET'])
   end
   # encode_token this method takes in a payload (a hash of key/values you want to save in the token)
   # and signs a token using a secret key. (in production this should an ENV variable.) => sign = create token
@@ -23,8 +23,8 @@ class ApplicationController < ActionController::API
       token = auth_header.split(' ')[1] #split off the header and just store the token
       # header: { 'Authorization': 'Bearer <token>' } #this is the format of an authorization header
       begin
-        JWT.decode(token, 'yourSecret', true, algorithm: 'HS256') #decodes the jwt token using the secret, which must match what is in endcode and returns to you the
-      rescue JWT::DecodeError # returns you the detoced token
+        JWT.decode(token,  ENV['SECRET'], true, algorithm: 'HS256') #decodes the jwt token using the secret, which must match what is in endcode and returns to you the
+      rescue JWT::DecodeError # returns you the decoded token
         nil
       end
     end
